@@ -6,10 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import jakarta.persistence.JoinColumn;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -17,7 +17,7 @@ import lombok.EqualsAndHashCode;
 @Table(name = "votos")
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Votos implements Serializable {
+public class Voto implements Serializable {
 
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +25,10 @@ public class Votos implements Serializable {
 		private Integer id;
 	
 		@ManyToOne
-		@JoinColumn(referencedColumnName = "aluno_votado_id")
+		@JoinColumn(name = "aluno_votado_id")
 		private Aluno alunoVotado;
 		
 		@ManyToOne
-		@JoinColumn(referencedColumnName = "aluno_que_votou_id")
+		@JoinColumn(name = "aluno_que_votou_id")
 		private Aluno alunoQueVotou;
 }

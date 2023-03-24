@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Avalia trabalhos alunos</title>
+        <h:outputStylesheet library="avalia" name="css/avalia_template.css"></h:outputStylesheet>
+    </h:head>
+    <h:body>
+        #{loginBean.redirecionaLogin()}
+        <p:growl showDetail="true">
+            <p:autoUpdate></p:autoUpdate>
+        </p:growl>
+        <div class="container">
+            <div class="content">
+                <nav>
+                    <h:graphicImage library="avalia" name="imagens/logo_danilo.png"></h:graphicImage>
+                    <ul>
+                        <li><a href="#" onclick="PF('edita-meus-dados').show(); return;"><i class="pi pi-id-card"></i> Meus dados</a></li>
+                    </ul>
+                    <h1>Vote nos trabalhos</h1>
+                    <div class="aluno-logado">
+                            Olá #{aluno.nome.split(' ')[0]} - Avaliações <span class="num-aval">#{2 - aluno.votosDados.size()}</span>
+                    </div>
+                        <a href="logout.xhtml">
+                            <i class="pi pi-sign-out"></i> Sair
+                        </a>
+                </nav>
+                <p:dialog header="Site #{aluno.nome}" widgetVar="edita-meus-dados">
+                    <h:form>
+                        <p:panelGrid columns="2" styleClass="ui-noborder">
+                            <h:outputLabel value="URL"></h:outputLabel>
+                            <p:inputText></p:inputText>
+                            <h:outputText></h:outputText>
+                            <p:commandButton icon="pi pi-save" value="Salvar"></p:commandButton>
+                        </p:panelGrid>
+                    </h:form>
+                </p:dialog>
+                <ui:insert></ui:insert>
+            </div>
+        </div>
+    </h:body>
+</html>

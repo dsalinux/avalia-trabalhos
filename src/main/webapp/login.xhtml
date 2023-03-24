@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+          xmlns:p="http://primefaces.org/ui"
+          xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Login - Avalia Trabalhos</title>
+	<h:outputStylesheet library="avalia" name="css/login.css"></h:outputStylesheet>
+</h:head>
+<h:body>
+	<div class="login">
+		<div class="logo">
+			<h:graphicImage library="avalia" name="imagens/logo_danilo.png"></h:graphicImage>
+		</div>
+		<div class="formulario">
+                    <h:form >
+                            <p:messages style="opacity: 0.6" showDetail="true">
+                                <p:autoUpdate></p:autoUpdate>
+                            </p:messages>
+                            <p:panelGrid columns="2" styleClass="ui-noborder" style="background: none" rendered="#{aluno == null}">
+                                <h:outputLabel value="Login"></h:outputLabel>
+                                <p:inputText value="#{loginBean.login}"></p:inputText>
+                                <h:outputLabel value="Senha"></h:outputLabel>
+                                <p:password value="#{loginBean.senha}"></p:password>
+                                <h:outputText></h:outputText>
+                                <p:commandButton actionListener="#{loginBean.logar()}" value="Entrar" update="@form"></p:commandButton>
+                            </p:panelGrid>
+                        <c:if test="#{aluno != null}">
+                                <h:outputText value="Bem vindo.... Redirecionando."></h:outputText>
+                                <script>
+                                    setTimeout(function(){
+                                        window.location.href = "index.xhtml";
+                                    }, 1000);
+                                </script>
+                        </c:if>
+                    </h:form>
+		</div>
+	</div>
+</h:body>
+</html>

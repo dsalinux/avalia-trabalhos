@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+          xmlns:p="http://primefaces.org/ui"
+          xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Login - Avalia Trabalhos</title>
+	<h:outputStylesheet library="avalia" name="css/login.css"></h:outputStylesheet>
+</h:head>
+<h:body>
+	<div class="login">
+		<div class="logo">
+			<h:graphicImage library="avalia" name="imagens/logo_danilo.png"></h:graphicImage>
+		</div>
+		<div class="formulario">
+                    <h:form>
+                                <h:outputText rendered="#{aluno != null}" value="Saindo."></h:outputText>
+                                <p:remoteCommand actionListener="#{loginBean.logout()}" autoRun="true" delay="2000" update="@form"></p:remoteCommand>
+                                <c:if test="#{aluno == null}">
+                                    <script>
+                                        window.location.href = "login.xhtml";
+                                    </script>
+                                </c:if>
+                    </h:form>
+		</div>
+	</div>
+</h:body>
+</html>

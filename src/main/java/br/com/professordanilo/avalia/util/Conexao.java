@@ -5,9 +5,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class Conexao {
-	private EntityManager em = null;
+	private static EntityManager em = null;
 	
-	 public EntityManager getConexao() {
+	 public static EntityManager getConexao() {
 	        if (em == null) {
 	            EntityManagerFactory factory = Persistence.createEntityManagerFactory("avaliaPU");
 	            em = factory.createEntityManager();
@@ -15,7 +15,7 @@ public class Conexao {
 	        return em;
 	    }
 
-	    public void fecharConexao() {
+	    public static void fecharConexao() {
 	        if (em != null) {
 	            em.clear();
 //	            em = null;
