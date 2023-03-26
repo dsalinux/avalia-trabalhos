@@ -12,10 +12,12 @@ import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "aluno")
-@Data
+@Getter @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Aluno implements Serializable {
 

@@ -27,7 +27,7 @@
                             #{alunoParaApoio.nome}
                         </f:facet>
                         <p:commandButton value="Cancelar apoio" rendered="#{votacaoBean.jaVotou(alunoParaApoio)}" update="@form" actionListener="#{votacaoBean.cancelarApoio(alunoParaApoio)}" icon="pi pi-times-circle" styleClass="ui-button-danger"></p:commandButton>
-                        <p:commandButton value="Apoiar" disabled="#{aluno.votosDados.size() >= 2}" rendered="#{!votacaoBean.jaVotou(alunoParaApoio)}" update="@form" actionListener="#{votacaoBean.apoiar(alunoParaApoio)}" icon="pi pi-heart" styleClass="ui-button-success" ></p:commandButton>
+                        <p:commandButton value="Apoiar" disabled="#{aluno.votosDados.size() >= 2 || alunoParaApoio.equals(aluno)}" rendered="#{!votacaoBean.jaVotou(alunoParaApoio)}" update="@form" actionListener="#{votacaoBean.apoiar(alunoParaApoio)}" icon="pi pi-heart" styleClass="ui-button-success" ></p:commandButton>
                         <p:commandButton value="Visualizar" icon="pi pi-search" actionListener="#{votacaoBean.visualizarAluno(alunoParaApoio)}" update="dialog-visualizar" oncomplete="PF('dialo-ver-site').show();"></p:commandButton>
                     </p:card>
                 </c:forEach>

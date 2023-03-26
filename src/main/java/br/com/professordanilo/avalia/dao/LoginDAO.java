@@ -5,8 +5,9 @@
 package br.com.professordanilo.avalia.dao;
 
 import br.com.professordanilo.avalia.entity.Aluno;
-import br.com.professordanilo.avalia.util.Conexao;
+import br.com.professordanilo.avalia.util.EntityManagerProducer;
 import java.io.Serializable;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -15,10 +16,12 @@ import javax.persistence.Query;
  * @author danilo
  */
 public class LoginDAO implements Serializable{
+
+    @Inject
+    private EntityManager manager;
     
     public Aluno buscarAlunoPorLoginSenha(String login, String senha){
-        EntityManager em = Conexao.getConexao();
-        Query query = em.createQuery("from Aluno where login=:login and senha=:senha", Aluno.class);
+        Query query = manager.createQuery("from Aluno where login=:login and senha=:senha", Aluno.class);
         query.setParameter("login", login);
         query.setParameter("senha", senha);
         Aluno aluno = (Aluno) query.getSingleResult();
@@ -26,10 +29,9 @@ public class LoginDAO implements Serializable{
         return aluno;
     }
     public Aluno buscarPorId(Integer id){
-        EntityManager em = Conexao.getConexao();
-        Aluno aluno = em.find(Aluno.class, id);
+        Aluno aluno = manager.find(Aluno.class, id);
         aluno.getVotosDados().size();
-        Conexao.fecharConexao();
+//        Conexao.fecharConexao();
         return aluno;
     }
 }

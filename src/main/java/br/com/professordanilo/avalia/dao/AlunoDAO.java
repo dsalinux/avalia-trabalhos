@@ -5,9 +5,10 @@
 package br.com.professordanilo.avalia.dao;
 
 import br.com.professordanilo.avalia.entity.Aluno;
-import br.com.professordanilo.avalia.util.Conexao;
+import br.com.professordanilo.avalia.util.EntityManagerProducer;
 import java.io.Serializable;
 import java.util.List;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import org.hibernate.Hibernate;
@@ -18,14 +19,16 @@ import org.hibernate.Hibernate;
  */
 public class AlunoDAO implements Serializable {
     
+    @Inject
+    private EntityManager manager;
+    
     public List<Aluno> listaAlunos(){
-        EntityManager em = Conexao.getConexao();
-        Query query = em.createQuery("from Aluno where url != ''");
+        Query query = manager.createQuery("from Aluno where url != ''");
         List<Aluno> alunos = query.getResultList();
         for(Aluno aluno : alunos) {
             aluno.getVotosRecebidos().size();
         }
-        Conexao.fecharConexao();
+//        Conexao.fecharConexao();
         return alunos;
     }
     

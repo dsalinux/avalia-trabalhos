@@ -10,6 +10,7 @@ import br.com.professordanilo.avalia.util.JSFUtil;
 import br.com.professordanilo.avalia.util.exception.ErroNegocioException;
 import br.com.professordanilo.avalia.util.exception.ErroSistemaException;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,9 +41,16 @@ public class VotacaoBean extends JSFUtil{
         @Inject
         private AlunoLogic alunoLogic;
         
+        private Long ultimaAtualizacao = 0L;
+        private List<Aluno> alunos;
+        
 	public List<Aluno> getListaAlunos(){
             try {
-                return alunoLogic.listarAlunosComURL();
+                if(ultimaAtualizacao + 5000 < new Date().getTime()){
+                    ultimaAtualizacao = new Date().getTime();
+                    alunos = alunoLogic.listarAlunosComURL();
+                }
+                return alunos;
             } catch (ErroNegocioException ex) {
                 Logger.getLogger(VotacaoBean.class.getName()).log(Level.SEVERE, null, ex);
                 addAviso(ex);

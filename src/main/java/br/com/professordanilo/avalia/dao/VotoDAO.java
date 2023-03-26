@@ -6,9 +6,10 @@ package br.com.professordanilo.avalia.dao;
 
 import br.com.professordanilo.avalia.entity.Aluno;
 import br.com.professordanilo.avalia.entity.Voto;
-import br.com.professordanilo.avalia.util.Conexao;
+import br.com.professordanilo.avalia.util.EntityManagerProducer;
 import java.io.Serializable;
 import java.util.List;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -18,18 +19,14 @@ import javax.persistence.Query;
  */
 public class VotoDAO implements Serializable {
     
+    @Inject
+    private EntityManager manager;
+    
     public void salvarApoio(Voto voto){
-        EntityManager em = Conexao.getConexao();
-        em.getTransaction().begin();
-        em.merge(voto);
-        em.getTransaction().commit();
+        manager.merge(voto);
     }
     public void remover(Voto voto){
-        EntityManager em = Conexao.getConexao();
-        em.getTransaction().begin();
-        voto = em.find(Voto.class, voto.getId());
-        em.remove(voto);
-        em.getTransaction().commit();
-        Conexao.fecharConexao();
+        voto = manager.find(Voto.class, voto.getId());
+        manager.remove(voto);
     }
 }
