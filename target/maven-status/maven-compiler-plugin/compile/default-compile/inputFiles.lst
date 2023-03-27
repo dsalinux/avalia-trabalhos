@@ -1,0 +1,14 @@
+/home/danilo/eclipse-workspace/avalia-trabalhos/src/main/java/br/com/professordanilo/avalia/bean/LoginBean.java
+/home/danilo/eclipse-workspace/avalia-trabalhos/src/main/java/br/com/professordanilo/avalia/logic/VotoLogic.java
+/home/danilo/eclipse-workspace/avalia-trabalhos/src/main/java/br/com/professordanilo/avalia/bean/VotacaoBean.java
+/home/danilo/eclipse-workspace/avalia-trabalhos/src/main/java/br/com/professordanilo/avalia/util/JSFUtil.java
+/home/danilo/eclipse-workspace/avalia-trabalhos/src/main/java/br/com/professordanilo/avalia/entity/Voto.java
+/home/danilo/eclipse-workspace/avalia-trabalhos/src/main/java/br/com/professordanilo/avalia/entity/Aluno.java
+/home/danilo/eclipse-workspace/avalia-trabalhos/src/main/java/br/com/professordanilo/avalia/util/exception/ErroSistemaException.java
+/home/danilo/eclipse-workspace/avalia-trabalhos/src/main/java/br/com/professordanilo/avalia/util/exception/ErroNegocioException.java
+/home/danilo/eclipse-workspace/avalia-trabalhos/src/main/java/br/com/professordanilo/avalia/dao/AlunoDAO.java
+/home/danilo/eclipse-workspace/avalia-trabalhos/src/main/java/br/com/professordanilo/avalia/logic/LoginLogic.java
+/home/danilo/eclipse-workspace/avalia-trabalhos/src/main/java/br/com/professordanilo/avalia/dao/LoginDAO.java
+/home/danilo/eclipse-workspace/avalia-trabalhos/src/main/java/br/com/professordanilo/avalia/logic/AlunoLogic.java
+/home/danilo/eclipse-workspace/avalia-trabalhos/src/main/java/br/com/professordanilo/avalia/dao/VotoDAO.java
+/home/danilo/eclipse-workspace/avalia-trabalhos/src/main/java/br/com/professordanilo/avalia/util/Conexao.java
