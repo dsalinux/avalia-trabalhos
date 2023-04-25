@@ -17,13 +17,19 @@
         <div class="container">
             <div class="content">
                 <nav>
+                        
                     <h:graphicImage library="avalia" name="imagens/logo_danilo.png"></h:graphicImage>
                     <ul>
                         <li><a href="#" onclick="PF('edita-meus-dados').show(); return;"><i class="pi pi-id-card"></i> Meus dados</a></li>
                     </ul>
                     <h1>Vote nos trabalhos</h1>
                     <div class="aluno-logado">
-                            Olá #{aluno.nome.split(' ')[0]} - Avaliações <span class="num-aval">#{2 - aluno.votosDados.size()}</span>
+                    <h:form>
+                        Olá #{aluno.nome.split(' ')[0]} - Avaliações 
+                        <h:outputText value="#{aluno.votosDisponiveis}" id="votos" class="num-aval">
+                            <p:autoUpdate></p:autoUpdate>
+                        </h:outputText>
+                    </h:form>
                     </div>
                         <a href="logout.xhtml">
                             <i class="pi pi-sign-out"></i> Sair

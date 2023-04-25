@@ -29,9 +29,10 @@ public class LoginDAO implements Serializable{
         return aluno;
     }
     public Aluno buscarPorId(Integer id){
-        Aluno aluno = manager.find(Aluno.class, id);
+        Aluno aluno = manager.getReference(Aluno.class, id);
         aluno.getVotosDados().size();
 //        Conexao.fecharConexao();
         return aluno;
     }
+
 }

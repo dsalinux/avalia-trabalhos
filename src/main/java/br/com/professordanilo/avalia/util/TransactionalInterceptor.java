@@ -40,6 +40,7 @@ public class TransactionalInterceptor implements Serializable {
             if(transaction != null && transaction.isActive() && criador) {
                 transaction.commit();
             }
+            manager.clear();
         }
     }
     

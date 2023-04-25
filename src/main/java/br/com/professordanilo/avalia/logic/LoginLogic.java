@@ -2,6 +2,7 @@ package br.com.professordanilo.avalia.logic;
 
 import br.com.professordanilo.avalia.dao.LoginDAO;
 import br.com.professordanilo.avalia.entity.Aluno;
+import br.com.professordanilo.avalia.util.Transacional;
 import br.com.professordanilo.avalia.util.exception.ErroNegocioException;
 import java.io.Serializable;
 import javax.faces.context.FacesContext;
@@ -26,5 +27,7 @@ public class LoginLogic implements Serializable {
         aluno = dao.buscarPorId(aluno.getId());
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("aluno", aluno);
     }
-    
+    public Aluno buscarPorId(Integer id) {
+        return dao.buscarPorId(id);
+    }
 }

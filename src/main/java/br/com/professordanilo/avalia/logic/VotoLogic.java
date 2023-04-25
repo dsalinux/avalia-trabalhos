@@ -7,11 +7,14 @@ package br.com.professordanilo.avalia.logic;
 import br.com.professordanilo.avalia.dao.VotoDAO;
 import br.com.professordanilo.avalia.entity.Aluno;
 import br.com.professordanilo.avalia.entity.Voto;
+import br.com.professordanilo.avalia.util.Transacional;
 import br.com.professordanilo.avalia.util.exception.ErroSistemaException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.persistence.Query;
 
 /**
  *
@@ -25,17 +28,25 @@ public class VotoLogic implements Serializable{
     @Inject
     private LoginLogic loginLogic;
     
+    @Transacional
     public void apoiar(Aluno alunoApoiado) throws ErroSistemaException{
         Aluno apoiador = (Aluno) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("aluno");
         if(apoiador == null) {
             throw new ErroSistemaException("Ops, parece que você não está logado.");
         }
+        if(apoiador.equals(alunoApoiado)) {
+            throw new ErroSistemaException("Você não pode votar em si mesmo. Escolha outro colega.");
+        }
+        if(loginLogic.buscarPorId(apoiador.getId()).getVotosDados().size() > 1){
+            throw new ErroSistemaException("Você chegou ao limite de votos.");
+        }
         Voto voto = new Voto();
         voto.setAlunoQueVotou(apoiador);
         voto.setAlunoVotado(alunoApoiado);
         dao.salvarApoio(voto);
-        loginLogic.atualizarAlunoLogado(apoiador);
     }
+    
+    @Transacional
     public void cancelarApoio(Aluno alunoApoiado) throws ErroSistemaException{
         Aluno apoiador = (Aluno) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("aluno");
         if(apoiador == null) {
@@ -54,5 +65,10 @@ public class VotoLogic implements Serializable{
         dao.remover(voto);
         apoiador.getVotosDados().remove(voto);
     }
+
+    public List<Voto> buscarVotosDados(Aluno aluno){
+        return dao.buscarVotosDados(aluno);
+    }
+    
     
 }

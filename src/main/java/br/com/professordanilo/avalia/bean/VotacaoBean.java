@@ -41,6 +41,9 @@ public class VotacaoBean extends JSFUtil{
         @Inject
         private AlunoLogic alunoLogic;
         
+        @Inject
+        private LoginLogic loginLogic;
+        
         private Long ultimaAtualizacao = 0L;
         private List<Aluno> alunos;
         
@@ -73,6 +76,8 @@ public class VotacaoBean extends JSFUtil{
                 Logger.getLogger(VotacaoBean.class.getName()).log(Level.SEVERE, null, ex);
                 addErro(ex);
             }
+            Aluno apoiador = (Aluno) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("aluno");
+            loginLogic.atualizarAlunoLogado(apoiador);
         }
         public void cancelarApoio(Aluno aluno){
             try {
@@ -85,7 +90,8 @@ public class VotacaoBean extends JSFUtil{
         public boolean jaVotou(Aluno alunoParaApoio) {
             Aluno alunoLogado = (Aluno) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("aluno");
             boolean votoDado = false;
-            for(Voto voto : alunoLogado.getVotosDados()) {
+            List<Voto> votosDados = votoLogic.buscarVotosDados(alunoLogado);
+            for(Voto voto : votosDados) {
                 votoDado = voto.getAlunoVotado().equals(alunoParaApoio);
                 if(votoDado) return votoDado;
             }

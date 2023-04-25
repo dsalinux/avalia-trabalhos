@@ -19,16 +19,16 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Voto implements Serializable {
 
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		@EqualsAndHashCode.Include
-		private Integer id;
-	
-		@ManyToOne
-		@JoinColumn(name = "aluno_votado_id")
-		private Aluno alunoVotado;
-		
-		@ManyToOne
-		@JoinColumn(name = "aluno_que_votou_id")
-		private Aluno alunoQueVotou;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "aluno_votado_id")
+    private Aluno alunoVotado;
+
+    @ManyToOne
+    @JoinColumn(name = "aluno_que_votou_id")
+    private Aluno alunoQueVotou;
 }

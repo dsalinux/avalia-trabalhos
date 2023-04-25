@@ -29,4 +29,11 @@ public class VotoDAO implements Serializable {
         voto = manager.find(Voto.class, voto.getId());
         manager.remove(voto);
     }
+    
+        
+    public List<Voto> buscarVotosDados(Aluno aluno) {
+        Query query = manager.createQuery("from Voto where alunoQueVotou=:aluno", Voto.class);
+        query.setParameter("aluno", aluno);
+        return query.getResultList();
+    }
 }
